@@ -18,6 +18,10 @@ public class MarkdownParse {
 	    int nextCloseCarrot = markdown.indexOf(">", nextOpenCarrot);
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
+	    if (nextOpenBracket == -1 || nextCloseBracket == -1 || nextOpenCarrot == -1 || nextCloseCarrot == -1 || openParen == -1 || closeParen == -1){
+                toReturn.add("Invalid format");
+                break;
+            }
 	    toReturn.add(markdown.substring(nextOpenCarrot + 1, nextCloseCarrot));
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             System.out.println(currentIndex);
