@@ -10,26 +10,32 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then take up to
         // the next )
         int currentIndex = 0;
-	int lastCloseParen = markdown.lastIndexOf(")");
+        int lastClosedParen=markdown.lastIndexOf(")");
         while(currentIndex < markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
-	    int nextOpenCarrot = markdown.indexOf("<", currentIndex);
+            int nextOpenCarrot = markdown.indexOf("<", currentIndex);
             int nextCloseBracket = markdown.indexOf("]", nextOpenBracket);
-	    int nextCloseCarrot = markdown.indexOf(">", nextOpenCarrot);
+            int nextCloseCarrot = markdown.indexOf(">", nextOpenCarrot);
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
-	    if (nextOpenBracket == -1 || nextCloseBracket == -1 || nextOpenCarrot == -1 || nextCloseCarrot == -1 || openParen == -1 || closeParen == -1){
-                toReturn.add("Invalid format");
-                break;
-            }
-	    toReturn.add(markdown.substring(nextOpenCarrot + 1, nextCloseCarrot));
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             System.out.println(currentIndex);
-	    if (closeParen == lastCloseParen){
+            currentIndex = closeParen + 1;
+            if (nextOpenBracket == -1 || nextCloseBracket == -1 ||
+            nextOpenCarrot == -1 || nextCloseCarrot == -1 ||
+            openParen == -1 || closeParen == -1||closeParen==lastClosedParen){
                 break;
             }
-            currentIndex = closeParen + 1;
+            if(markdown.charAt(nextOpenBracket-1) != '!'){
+                toReturn.add(markdown.substring(openParen + 1, closeParen));
+            }
+            toReturn.add(markdown.substring(nextOpenCarrot + 1, nextCloseCarrot));
+            
         }
+        
+        System.out.println(currentIndex);
+        int test = markdown.indexOf("]");
+        System.out.println(test);
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
@@ -39,3 +45,4 @@ public class MarkdownParse {
         System.out.println(links);
     }
 }
+
