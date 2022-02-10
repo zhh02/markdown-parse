@@ -10,11 +10,7 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then take up to
         // the next )
         int currentIndex = 0;
-<<<<<<< Updated upstream
         int lastClosedParen=markdown.lastIndexOf(")");
-=======
-        int lastCloseParen = markdown.lastIndexOf(")");
->>>>>>> Stashed changes
         while(currentIndex < markdown.length()) {
             int nextOpenBracket = markdown.indexOf("[", currentIndex);
             int nextOpenCarrot = markdown.indexOf("<", currentIndex);
@@ -22,16 +18,8 @@ public class MarkdownParse {
             int nextCloseCarrot = markdown.indexOf(">", nextOpenCarrot);
             int openParen = markdown.indexOf("(", nextCloseBracket);
             int closeParen = markdown.indexOf(")", openParen);
-            if (nextOpenBracket == -1 || nextCloseBracket == -1 || nextOpenCarrot == -1 || nextCloseCarrot == -1 || openParen == -1 || closeParen == -1){
-                toReturn.add("Invalid format");
-                break;
-            }
-            toReturn.add(markdown.substring(nextOpenCarrot + 1, nextCloseCarrot));
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             System.out.println(currentIndex);
-            if (closeParen == lastCloseParen){
-                break;
-            }
             currentIndex = closeParen + 1;
             if (nextOpenBracket == -1 || nextCloseBracket == -1 ||
             nextOpenCarrot == -1 || nextCloseCarrot == -1 ||
@@ -44,14 +32,10 @@ public class MarkdownParse {
             toReturn.add(markdown.substring(nextOpenCarrot + 1, nextCloseCarrot));
             
         }
-<<<<<<< Updated upstream
         
         System.out.println(currentIndex);
-=======
-        //System.out.println(currentIndex);
->>>>>>> Stashed changes
         int test = markdown.indexOf("]");
-        //System.out.println(test);
+        System.out.println(test);
         return toReturn;
     }
     public static void main(String[] args) throws IOException {
