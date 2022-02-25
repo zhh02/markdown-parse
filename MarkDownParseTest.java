@@ -23,7 +23,7 @@ public class MarkDownParseTest {
     @Test
     public void Snippet1() throws IOException{
         String contents = Files.readString(Path.of("./break-file.md"));
-        List<String> expected = List.of("https://something.com","some-page.html");
+        List<String> expected = List.of("`google.com");
         assertEquals(expected,MarkdownParse.getLinks(contents));
     }
 }
