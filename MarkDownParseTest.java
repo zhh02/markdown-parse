@@ -1,11 +1,11 @@
 import static org.junit.Assert.*;
-import org.junit.*;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import org.junit.*;
 
 public class MarkDownParseTest {
     @Test
@@ -19,9 +19,11 @@ public class MarkDownParseTest {
             test = true;
         }
     }
-/*static Path	of​(String first, String... more)	
-Returns a Path by converting a path string, or a sequence of strings that when joined form a path string.
-static Path	of​(URI uri)	
-Returns a Path by converting a URI.
-**/
+
+    @Test
+    public void Snippet1() throws IOException{
+        String contents = Files.readString(Path.of("./break-file.md"));
+        List<String> expected = List.of("https://something.com","some-page.html");
+        assertEquals(expected,MarkdownParse.getLinks(contents));
+    }
 }
