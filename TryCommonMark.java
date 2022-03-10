@@ -7,6 +7,7 @@ class TryCommonMark {
         Parser parser = Parser.builder().build();
         Node document = parser.parse("This is *Sparta*");
         HtmlRenderer renderer = HtmlRenderer.builder().build();
-        renderer.render(document);  // "<p>This is <em>Sparta</em></p>\n"
+        String output = renderer.render(document);  // "<p>This is <em>Sparta</em></p>\n"
+        System.out.print(output);
     }
 }
