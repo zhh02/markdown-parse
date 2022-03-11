@@ -104,7 +104,9 @@ import java.util.regex.Pattern;
 public class MarkdownParse {
     public static ArrayList<String> getLinks(String markdown) {
         ArrayList<String> toReturn = new ArrayList<>();
-        String regex = "(?<!!)\\[.+\\]\\(\\h*(\\S+)\\h*\\)";
+        // String regex = "(?<!!)\\[.+\\]\\(\\h*(\\S+)\\h*\\)";
+        // String regex = "(?<!`)(^\\h*)(?<!!)\\[.+\\]\\(\\s*(\\S+)\\s*\\)";
+        String regex = "(?<!!)\\[.+\\]\\(\\s*(\\S+)\\s*\\)";
         Matcher matcher = Pattern.compile(regex).matcher(markdown);
 
         while(matcher.find()) {
